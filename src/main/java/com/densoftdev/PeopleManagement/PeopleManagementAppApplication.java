@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -24,8 +25,31 @@ public class PeopleManagementAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createPerson();
-        createPersons();
+        //createPerson();
+        //createPersons();
+        //getPersonsByIds();
+        //deletePersonEntity();
+        updatePersonEmailById();
+    }
+
+    private void updatePersonEmailById() {
+        peopleManagementService.updatePersonEmailById(1,"githinji@gmail.com");
+    }
+
+    private void deletePersonEntity() {
+        Person person = new Person();
+        person.setId(3);
+        peopleManagementService.deletePersonEntity(person);
+    }
+
+    private void getPersonsByIds() {
+        List<Integer> ids = new ArrayList<>();
+        ids.add(2);
+        ids.add(3);
+        ids.add(20);
+        Iterable<Person> personList = peopleManagementService.getPersonsByIds(ids);
+
+        System.out.println(personList);
     }
 
     private void createPersons() {
